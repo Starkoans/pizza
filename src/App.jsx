@@ -1,11 +1,11 @@
 import React from 'react';
-import {createBrowserRouter, Route, Router, RouterProvider} from 'react-router-dom';
+import {createHashRouter, RouterProvider} from 'react-router-dom';
 import { CatalogPage } from './pages/CatalogPage.jsx';
 import {CartPage} from "./pages/CartPage.jsx";
 import {Layout} from "./components/Layout.jsx";
 
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
 
     path:"/pizza",

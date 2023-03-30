@@ -1,54 +1,45 @@
-import {useEffect, useState} from "react";
-
-
-// const CartItems =
-//     {
-//         id: "11",
-//         name: "Маргарита",
-//         price_of_one: 259,
-//         img: "https://dodopizza-a.akamaihd.net/static/Img/Products/748949429e25404ea10aab002c910d84_366x366.webp",
-//         countValue:1
-//     }
-
+import {useContext, useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {addSameCartItem, deleteSameCartItem} from "../store/CartItemSlice.js";
+import {useForm} from "react-hook-form";
+import OrderForm from "./OderForm.jsx";
 
 function CartItem (props){
 
-    const [count, setCount] = useState(props.cartItemCount);
-    const [price, setPrice] = useState(props.cartItemPriceOfOne*props.cartItemCount);
-    const [visible, setVisible] = useState(props.cartItemCount ? true : false);
-
+    const dispatch = useDispatch();
     const handleClickCount = (value)=>{
+
 
         switch (value) {
             case "-" :
-                setCount(count-1);
-                setPrice(price-props.cartItemPriceOfOne);
-                props.totalChangeHandler(props.cartItemPriceOfOne , value);
+                dispatch( deleteSameCartItem( {
+                    id: props.cartItemId,
+                    countValue: props.cartItemCount,
+
+                }) )
                 break;
             case "+" :
-                setCount(count+1);
-                setPrice(price+props.cartItemPriceOfOne);
-                props.totalChangeHandler(props.cartItemPriceOfOne , value);
+
+                dispatch( addSameCartItem( {
+                    id: props.cartItemId,
+                    countValue: props.cartItemCount,
+
+                }) )
+
                 break;
 
         }
     }
 
-    useEffect(()=>{
-            //условное удаление конпонента из корзины
-            count >0 ? setVisible(true) : setVisible(false);
-            //при изменении count
-        }, [count]
-    )
 
     return(
         <>
-            { visible ?
+            {
                 <div>
                     <img style={{height:'100px',weight: '100px'} } alt={'Pizza_img'} src={props.cartItemImg}/>
                     <h3>{props.cartItemName}</h3>
-                    <h3>{price} руб.</h3>
-                    <p>{count}</p>
+                    <h3>{props.cartItemPriceOfOne } руб.</h3>
+                    <p>{props.cartItemCount}</p>
                     <input type={"button"}
                            value={"-"}
                            onClick={(e)=>{
@@ -63,7 +54,7 @@ function CartItem (props){
                     />
 
 
-                </div> : null
+                </div>
             }
 
         </>
@@ -72,14 +63,27 @@ function CartItem (props){
 }
 
 
-export default function Cart (props){
-    let total = 0;
-    for (let i in props.CartItems){
-        total= total + props.CartItems[i].price_of_one * props.CartItems[i].countValue;
 
+
+
+export default function Cart (){
+
+    const items = useSelector((state) => state.cartItems.cartItems);
+    const [showOrderForm, setShowOrderForm] = useState(false);
+
+    const handleShowForm = (data) => {
+        console.log(showOrderForm)
+        setShowOrderForm(!showOrderForm);
+    }
+    useEffect(()=>{},[showOrderForm]);
+
+
+    let total = 0;
+    for (let i in items){
+        total= total + items[i].price_of_one * items[i].countValue;
     }
     const [inTotal, setInTotal] = useState(total);
-
+    useEffect(()=>{},[total])
     const totalChangeHandler =(price, value)=>{
         switch (value){
             case "+":
@@ -92,15 +96,20 @@ export default function Cart (props){
 
     }
 
+    useEffect(()=>{
+        console.log(items)
+    },[items])
+
     return(
         <div>
-            { inTotal ? <div>
+            { (items.length!==0) ? <div>
                 {
-                    props.CartItems.map((item,index)=>{
+                    items.map((item,index)=>{
                         return(
                             <CartItem key={index}
+                                      cartItemId={item.id}
                                       cartItemImg={item.img}
-                                      cartItemName={item.name}
+                                      cartItemName={item.name + ' ' + item.size}
                                       totalChangeHandler={totalChangeHandler}
                                       cartItemCount={item.countValue}
                                       cartItemPriceOfOne={item.price_of_one}
@@ -109,8 +118,8 @@ export default function Cart (props){
                     })
                 }
                 <h3>Сумма заказа: {inTotal}</h3>
-                <button>Оформить заказ</button>
-
+                <button onClick={handleShowForm}>Оформить заказ</button>
+                {  showOrderForm ? <OrderForm/> : null}
             </div> : <p>Корзина пуста.</p>
 
             }

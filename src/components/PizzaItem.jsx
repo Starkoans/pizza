@@ -1,13 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
+
+import {useDispatch, useSelector} from "react-redux";
+import {addCartItem} from "../store/CartItemSlice.js";
+
 
 function SizeRadio(props) {
 
-
     return(
-        <div>
+        <div className={'size-radio'}>
             {
                 props.sizesArr.map((size, index)=>(
-                    <input key={index}
+                    <input className={'size-radio-btn'}
+                        key={index}
                         type={"button"}
                         name="sizeType"
                         value={size}
@@ -29,6 +33,7 @@ export default function PizzaItem (props){
     }
     const [price, setPrice] = useState(props.pizza.price[0]);
 
+
     useEffect(()=>{
 
             switch (selectedSizeType) {
@@ -46,40 +51,29 @@ export default function PizzaItem (props){
         ,[selectedSizeType]
     )
 
-    const [selectedItem, setSelectedItem]= useState({});
+    const dispatch = useDispatch();
 
-    //записывает, когда меняется состояние, а надо записывать когда происходит клик
     const handleClickAddItem = (data)=>{
 
-        setSelectedItem({
-             ...selectedItem,
-
+        dispatch(addCartItem({
             id: props.pizza.id,
             name:props.pizza.name,
             img : props.pizza.img,
             size: selectedSizeType,
-            price: price,
-            count: 1
-        })
-
-        console.log(selectedItem);
-
+            price_of_one: price,
+            countValue: 1
+        }))
     }
-
+    const items = useSelector((state) => state.cartItems.cartItems);
     useEffect(()=>{
-
-        if (Object.keys(selectedItem).length !== 0){
-            props.handleAddItem(selectedItem);
-        }
-
-
-    },[selectedItem])
-
-
+        console.log(items)
+    },[items])
 
     return(
-        <div>
-            <img style={{height:'200px',weight: '200px'} } alt={'Pizza_'+props.pizza.name} src={props.pizza.img}/>
+        <div className={'pizza-item'}>
+            <img className={'pizza-img'}
+                 alt={'Pizza_'+props.pizza.name}
+                 src={props.pizza.img}/>
             <h3>{props.pizza.name}</h3>
             <p>{props.pizza.type}</p>
             <p>{props.pizza.description}</p>

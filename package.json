@@ -1,6 +1,7 @@
 {
   "name": "react",
   "private": true,
+  "homepage": "https://starkoans.github.io/pizza",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -8,6 +9,7 @@
     "build": "vite build",
     "preview": "vite preview --port 8080",
     "format": "prettier --write '**/*.{js,jsx}'",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "dependencies": {
@@ -29,5 +31,5 @@
     "gh-pages": "^5.0.0",
     "vite": "^4.2.1"
   },
-  "homepage": "https://starkoans.github.io/pizza/"
+
 }

@@ -8,7 +8,7 @@ import {Layout} from "./components/Layout.jsx";
 const router = createHashRouter([
   {
 
-    path:"/pizza",
+    path:"/",
     element:   <Layout/> ,
     children:[
       {

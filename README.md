@@ -1,12 +1,10 @@
-# **Shift winter 2023 sample ❄️️**
-
-Данный репозиторий содержит sample на reactjs для frontend'а.
 
 ## Stack
 
-- react-query + axios
 - vite
 - react-router-dom
+- redux-toolkit
+- react hook form
 
 ## Системные требования
 

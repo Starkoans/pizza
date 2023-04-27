@@ -10,7 +10,9 @@ export const store = configureStore({
 
     reducer:{
         cartItems : cartItemReducer
-    }
+        
+    },
+    devTools: true
 
 })
 

@@ -1,11 +1,7 @@
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
   line-height: 24px;
-  font-weight: 400;
-
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
   font-synthesis: none;
@@ -13,59 +9,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-}
-
-.header{
-  background: #0b0803;
-  padding-top: 3%;
-  display: flex;
-  justify-content: center;
-}
-.header-link{
-  color: #929126;
-  text-decoration: none;
-  padding-inline: 1em;
-  padding-bottom: 1em;
-}
-.header-link:hover{
-  color: #929126;
-  text-decoration: underline;
-  padding-bottom: 1em;
-}
-
-.catalog{
-  padding: 4%;
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: center;
-  align-items: center;
 
 }
-.pizza-item{
-  width: 300px;
-  display: inline-block;
-  padding: 1em;
-}
 
-.pizza-img{
-  height: 200px;
-  display: block;
-  width: 200px;
-  background: wheat;
-  border-radius: 100px;
-}
-.size-radio{
- background: #ad970d;
-  border-radius: 30px;
-  display: flex;
-  justify-content: space-around;
-}
-.size-radio-btn b{
-  border: none;
-  background: none;
-  text-decoration: none;
-  padding: 10px 24px;
-  color: #242424;
-}
+
+
+
+

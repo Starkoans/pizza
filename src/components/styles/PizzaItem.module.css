@@ -1,0 +1,86 @@
+.pizzaItem {
+    color: #0b0803;
+    width: 300px;
+    height: 630px;
+    margin: 20px;
+    display: inline-block;
+    padding: 30px;
+    background: #c4c4c4;
+    padding-bottom: 50px;
+    border-radius: 10px;
+    border: #dedede 1px solid;
+}
+
+.pizzaItemDescription {
+    height: 70px;
+
+}
+
+.pizzaImg {
+    height: 300px;
+    display: block;
+    width: 300px;
+    background: #c4c4c4;
+    border-radius: 200px;
+    transition: transform 0.3s ease-in-out;
+}
+.pizzaImg:hover{
+    transform: rotate(10deg);
+}
+.sizeRadio{
+    background: #b0b0b0;
+    padding: 5px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+.sizeRadioBtn {
+    border: none;
+    border-radius: 20px;
+    background-color: #c4c4c4;
+    text-decoration: none;
+    padding: 10px 24px;
+    color: #0b0803;
+    cursor: pointer;
+    transition: background-color 0.5s linear;
+}
+.sizeRadioBtn:hover {
+    background: linear-gradient(135deg, #c4c4c4, #e8e8e8);
+}
+
+.sizeRadioBtnSelected {
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    padding: 10px 24px;
+    color: #ffbcad;
+    background: linear-gradient( 135deg, #e17b01, #e7632b);
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.addItemBtn {
+    display: inline-block;
+    padding: 15px;
+    border-radius: 20px;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    background: #d5480c;
+    font-size: 15px;
+
+}
+
+.addItemBtn:hover {
+    background: linear-gradient( 135deg, #d5480c, #640018);
+}
+
+.typeTag {
+    background: #363634;
+    padding: 5px 10px 5px 10px;
+    color: #c0bfbf;
+    width: fit-content;
+    border: 3px;
+    border-radius: 30px;
+}

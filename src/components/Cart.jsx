@@ -3,67 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {addSameCartItem, deleteSameCartItem} from "../store/CartItemSlice.js";
 import {useForm} from "react-hook-form";
 import OrderForm from "./OderForm.jsx";
-
-function CartItem (props){
-
-    const dispatch = useDispatch();
-    const handleClickCount = (value)=>{
-
-
-        switch (value) {
-            case "-" :
-                dispatch( deleteSameCartItem( {
-                    id: props.cartItemId,
-                    countValue: props.cartItemCount,
-
-                }) )
-                break;
-            case "+" :
-
-                dispatch( addSameCartItem( {
-                    id: props.cartItemId,
-                    countValue: props.cartItemCount,
-
-                }) )
-
-                break;
-
-        }
-    }
-
-
-    return(
-        <>
-            {
-                <div>
-                    <img style={{height:'100px',weight: '100px'} } alt={'Pizza_img'} src={props.cartItemImg}/>
-                    <h3>{props.cartItemName}</h3>
-                    <h3>{props.cartItemPriceOfOne } руб.</h3>
-                    <p>{props.cartItemCount}</p>
-                    <input type={"button"}
-                           value={"-"}
-                           onClick={(e)=>{
-                               handleClickCount(e.target.value);
-                           }}
-                    />
-                    <input type={"button"}
-                           value={"+"}
-                           onClick={(e)=>{
-                               handleClickCount(e.target.value);
-                           }}
-                    />
-
-
-                </div>
-            }
-
-        </>
-
-    )
-}
-
-
-
+import CartItem from "./CartItem.jsx";
+import styles from './styles/Cart.module.css'
 
 
 export default function Cart (){
@@ -101,8 +42,11 @@ export default function Cart (){
     },[items])
 
     return(
-        <div>
-            { (items.length!==0) ? <div>
+
+
+        <div >
+            { (items.length!==0) ?
+                <div className={styles.cart}>
                 {
                     items.map((item,index)=>{
                         return(
@@ -117,13 +61,24 @@ export default function Cart (){
                         )
                     })
                 }
-                <h3>Сумма заказа: {inTotal}</h3>
-                <button onClick={handleShowForm}>Оформить заказ</button>
-                {  showOrderForm ? <OrderForm/> : null}
-            </div> : <p>Корзина пуста.</p>
+                <div classNamse={styles.cartSummary}>
+                    <div className={styles.cartSummaryValue}>
+                        <p>Сумма заказа: </p>
+                        <h3>{inTotal}</h3>
+
+                    </div>
+                    <button
+                        className={styles.cartGoToFormBtn}
+                        onClick={handleShowForm}>
+                        Оформить заказ
+                    </button>
+                </div>
+
+            </div>
+                : <p>Корзина пуста.</p>
 
             }
-
+            {  showOrderForm ? <OrderForm/> : null}
         </div>
 
     )

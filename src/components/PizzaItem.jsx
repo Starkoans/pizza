@@ -2,20 +2,21 @@ import React, {useContext, useEffect, useState} from 'react';
 
 import {useDispatch, useSelector} from "react-redux";
 import {addCartItem} from "../store/CartItemSlice.js";
+import styles from './styles/PizzaItem.module.css'
 
 
 function SizeRadio(props) {
 
     return(
-        <div className={'size-radio'}>
+        <div className={styles.sizeRadio}>
             {
                 props.sizesArr.map((size, index)=>(
-                    <input className={'size-radio-btn'}
+                    <input className={ props.pizzaSize === size ?  styles.sizeRadioBtnSelected :styles.sizeRadioBtn}
                         key={index}
                         type={"button"}
                         name="sizeType"
                         value={size}
-                        style={props.pizzaSize === size ?  {color:"green"}:{color:"grey"}}
+                        // style={props.pizzaSize === size ?  {className}:{color:"grey"}}
                         onClick={(e) => props.selectSize(e.target.value)}
                     />)
                 )
@@ -53,6 +54,7 @@ export default function PizzaItem (props){
 
     const dispatch = useDispatch();
 
+
     const handleClickAddItem = (data)=>{
 
         dispatch(addCartItem({
@@ -65,30 +67,35 @@ export default function PizzaItem (props){
         }))
     }
     const items = useSelector((state) => state.cartItems.cartItems);
+
+    const inCart = items.some( (itm) => itm.id === props.pizza.name+selectedSizeType);
+
     useEffect(()=>{
         console.log(items)
+        console.log(props.pizza.id + ': ' + inCart)
     },[items])
 
     return(
-        <div className={'pizza-item'}>
-            <img className={'pizza-img'}
+        <div className={styles.pizzaItem}>
+            <img className={styles.pizzaImg}
                  alt={'Pizza_'+props.pizza.name}
                  src={props.pizza.img}/>
-            <h3>{props.pizza.name}</h3>
-            <p>{props.pizza.type}</p>
-            <p>{props.pizza.description}</p>
+            <h2>{props.pizza.name}</h2>
+            <p className={styles.typeTag}>{'#' + props.pizza.type}</p>
+            <p className={styles.pizzaItemDescription}>{props.pizza.description}</p>
 
             <SizeRadio pizzaSize={selectedSizeType}
                        sizesArr={sizesArr}
                        selectSize={handleClickSizeType} />
 
-            <h3>{price} руб.</h3>
+            <h2>{price} руб.</h2>
             <input type={"button"}
                    value={"Добавить"}
                    onClick={handleClickAddItem}
+                   className={styles.addItemBtn}
 
             />
-
+            {inCart? <p style={{display: "inline", padding: "10px"}}>В корзине</p> : null}
         </div>
     )
 }

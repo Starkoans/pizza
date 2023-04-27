@@ -1,0 +1,56 @@
+.header{
+    background: #0b0803;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.header>*{
+    width: 200px;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 3%;
+    margin-left: 5%;
+    margin-right: 5%;
+    color: #dedede;
+    text-align: center;
+}
+
+
+@font-face {
+    font-family: "Press Start 2P";
+    font-style: normal;
+    font-weight: 400;
+
+    src:
+    url("../../../PressStart2P-Regular.ttf") ;
+
+}
+@media (max-width: 500px) {
+    .header{
+        flex-direction: column;
+        padding-bottom: 5%;
+    }
+    .header>*{
+        border-bottom: 1px solid #dedede;
+        padding: 5%;
+    }
+
+
+}
+
+.headerLinks{
+    text-decoration: none;
+    font-family: 'Press Start 2P', normal;
+}
+
+.headerLinks:hover{
+    color: #dddddd;
+    text-decoration: underline;
+}
+
+.footer{
+    background: #0b0803;
+    text-align: center;
+    color: #4f4f4c;
+}

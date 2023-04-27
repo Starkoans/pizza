@@ -1,0 +1,107 @@
+
+.orderForm{
+
+    background: #1f1f1f;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    border-radius: 20px;
+    color: #6e6455;
+    margin-bottom: 10%;
+    /*margin: 5%;*/
+    width: 290px;
+}
+.orderFormLabel{
+    width: 100%;
+    font-size: 15px;
+}
+.orderFormField{
+    display: flex;
+    flex-direction: column;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+.orderFormInput{
+    height: 20px;
+    padding: 5px;
+    font-size: 15px;
+    background: none;
+    border: #70574f 1px solid;
+    border-radius: 5px;
+}
+.orderFormInputError{
+    height: 20px;
+    padding: 5px;
+    font-size: 15px;
+    background: none;
+    border: #c62e0b 1px solid;
+    border-radius: 5px;
+}
+
+.orderFormInputErrorText{
+    color: #d5310c;
+    font-size: 13px;
+}
+
+.orderFormInputComment{
+    font-size: 15px;
+    text-decoration: none;
+    background: none;
+    border: #70574f 1px solid;
+    border-radius: 5px;
+    white-space: normal;
+    height: 200px;
+}
+
+.orderFormInputCommentError{
+    height: 20px;
+    padding: 5px;
+    font-size: 15px;
+    background: none;
+    border: #c62e0b 1px solid;
+    border-radius: 5px;
+    white-space: normal;
+    height: 200px;
+}
+
+.orderFormSubmitBtn{
+    text-decoration: none;
+    border: none;
+    background: #d5480c;
+    color: #fddd92;
+    padding: 5%;
+    border-radius: 20px;
+    margin-top: 5%;
+    display: block;
+    margin-left: auto;
+    margin-right:auto;
+    font-size: 17px;
+    width: auto;
+}
+.orderFormMessage{
+    background: #1f1f1f;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    border-radius: 20px;
+    color: #6e6455;
+    margin: 5%;
+    text-align: center;
+}
+.orderFormCloseBtn{
+    text-decoration: none;
+    border: none;
+    background: none;
+    font-size: 17px;
+    color: #6e6455;
+    margin-left: auto;
+    display: block;
+    padding-right: 10%;
+}
+.orderFormHouseSection{
+    display: flex;
+    flex-direction: row;
+}
+.orderFormHouseSection>div>input{
+    width: 70px;
+}

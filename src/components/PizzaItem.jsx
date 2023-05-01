@@ -75,27 +75,31 @@ export default function PizzaItem (props){
         console.log(props.pizza.id + ': ' + inCart)
     },[items])
 
+    const itemIsLoading = useSelector((state)=>state.cartItems.loading)
+
+
     return(
-        <div className={styles.pizzaItem}>
-            <img className={styles.pizzaImg}
-                 alt={'Pizza_'+props.pizza.name}
-                 src={props.pizza.img}/>
-            <h2>{props.pizza.name}</h2>
-            <p className={styles.typeTag}>{'#' + props.pizza.type}</p>
-            <p className={styles.pizzaItemDescription}>{props.pizza.description}</p>
 
-            <SizeRadio pizzaSize={selectedSizeType}
-                       sizesArr={sizesArr}
-                       selectSize={handleClickSizeType} />
+    <div className={styles.pizzaItem}>
+        <img className={styles.pizzaImg}
+             alt={'Pizza_' + props.pizza.name}
+             src={props.pizza.img}/>
+        <h2>{props.pizza.name}</h2>
+        <p className={styles.typeTag}>{'#' + props.pizza.type}</p>
+        <p className={styles.pizzaItemDescription}>{props.pizza.description}</p>
 
-            <h2>{price} руб.</h2>
-            <input type={"button"}
-                   value={"Добавить"}
-                   onClick={handleClickAddItem}
-                   className={styles.addItemBtn}
+        <SizeRadio pizzaSize={selectedSizeType}
+                   sizesArr={sizesArr}
+                   selectSize={handleClickSizeType}/>
 
-            />
-            {inCart? <p style={{display: "inline", padding: "10px"}}>В корзине</p> : null}
-        </div>
+        <h2>{price} руб.</h2>
+        <input type={"button"}
+               value={"Добавить"}
+               onClick={handleClickAddItem}
+               className={styles.addItemBtn}
+
+        />
+        {inCart ? <p style={{display: "inline", padding: "10px"}}>В корзине</p> : null}
+    </div>
     )
 }

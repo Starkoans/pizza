@@ -1,5 +1,5 @@
 import {useDispatch} from "react-redux";
-import {addSameCartItem, deleteSameCartItem} from "../store/CartItemSlice.js";
+import {addSameCartItem, deleteCartItem, deleteSameCartItem} from "../store/CartItemSlice.js";
 import styles from './styles/CartItem.module.css'
 export default function CartItem (props){
 
@@ -13,7 +13,6 @@ export default function CartItem (props){
                 dispatch( deleteSameCartItem( {
                     id: props.cartItemId,
                     countValue: props.cartItemCount,
-
                 }) )
                 break;
             case "+" :
@@ -29,6 +28,11 @@ export default function CartItem (props){
         }
     }
 
+    const handleItemDelete= ()=>{
+        dispatch(deleteCartItem({
+            id:props.cartItemId
+        }))
+    }
 
     return(
         <div>
@@ -69,6 +73,7 @@ export default function CartItem (props){
                     <div className={styles.cartItemDelete}>
                         <input
                             className={styles.cartItemDeleteBtn}
+                            onClick={handleItemDelete}
                             type={"button"}
                             value={'х'}>
 

@@ -1,15 +1,13 @@
 import {configureStore} from '@reduxjs/toolkit'
 import cartItemReducer from "./CartItemSlice";
 
-//тут будет стор (хранилище)
-
-//configureStore возвращает хранилище
-
+//тут будет стор
 export const store = configureStore({
     //тут хранятся редьюсеры (слайсы)
 
     reducer:{
-        cartItems : cartItemReducer
+        cartItems : cartItemReducer,
+
         
     },
     devTools: true

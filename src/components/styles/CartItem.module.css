@@ -18,9 +18,9 @@
 .cartItemName {
     margin-top: 5px;
     margin-bottom: 5px;
-    margin-right: 10px;
+    /*margin-right: 10px;*/
     width: fit-content;
-    height: 24px;
+    height: 30%;
     font-size: 16px;
     font-weight: bold;
 }
@@ -28,6 +28,7 @@
     margin: 0;
 }
 .cartItemDescription {
+    width: 130px;
     flex-direction: column;
     display: flex;
     margin-top: 25px;
